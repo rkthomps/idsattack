@@ -71,6 +71,21 @@ def get_fpr_tpr_data(result_file_loc, roc_granularity=1000):
     return sorted_fprs, sorted_tprs
 
 
+def find_auc(sorted_fprs, sorted_tprs):
+    """ Find the area under the ROC curve """
+    cur_x = 0
+    cur_y = 0
+    auc = 0
+    for fpr, tpr in zip(sorted_fprs, sorted_tprs):
+        dx = fpr - cur_x
+        dy = tpr - cur_y
+        auc += dx * cur_y
+        auc += dx * dy / 2
+        cur_x = fpr
+        cur_y = tpr
+    return auc
+
+
 def plot_single_roc(result_file_loc, plot_save_loc, plot_title, roc_granularity=1000):
     sorted_fprs, sorted_tprs = get_fpr_tpr_data(result_file_loc,
                                                 roc_granularity=roc_granularity)
@@ -88,6 +103,7 @@ def plot_single_roc(result_file_loc, plot_save_loc, plot_title, roc_granularity=
     ax.set_title(plot_title)
     
     fig.savefig(plot_save_loc)
+    print("AUC: {5.4f}".format(find_auc(sorted_fprs, sorted_tprs)))
 
 
 def plot_multiple_roc(result_directory_loc, plot_save_loc, plot_title, roc_granularity=1000):
@@ -106,9 +122,9 @@ def plot_multiple_roc(result_directory_loc, plot_save_loc, plot_title, roc_granu
             continue
         
         ax.plot(sorted_fprs, sorted_tprs, label=pretty_name)
+        print("{:20s} AUC: {:5.4f}".format(file_basename, find_auc(sorted_fprs, sorted_tprs)))
 
     ax.plot([0, 1], [0, 1], "k--", label="Random Guesser", alpha=0.5) 
-
     ax.set_xlabel("False Positive Rate")
     ax.set_ylabel("True Positive Rate")
     ax.set_title(plot_title)
