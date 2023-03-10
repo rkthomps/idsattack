@@ -1,0 +1,22 @@
+Defense mechanisms in a cloud computing environment
+============================
+
+Summary
+=========
+The major need for DDOS detection is low-rate DDOSS traffic. High rate traffic is trivial to detect.
+Availability is of upmost importance in cloud-computing services since their purpose is to offer on-demand service.
+
+Two types of DDoS attacks: Brute force and semantic
+- Semantic attacks exploit protocol weaknesses. These are known as low-rate attacks.
+Low rate attacks in one of four categories:
+- Shrew attack
+- Reduction of Quality attack (RoQ)
+- Low Rate DDoS attack against Application Server(LoRDAS)
+- Economic Denial-of-Sustainability attack
+
+
+Detection approaches:
+========================
+Pattern matching and fingerprinting:
+- [90] [85]
+

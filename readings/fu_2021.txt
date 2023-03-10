@@ -1,0 +1,96 @@
+
+
+
+
+
+Major Methodology:
+---------------
+preprocessing:
+ 1. encode per-packet feature sequences. 
+ 2. Perform Discrete Fourier Transformation [51] on each frame
+ 3. Logorithmic transformation
+
+Training:
+- Replay 42 malicious traffic datasets.
+- Replay 36 new datasets.
+
+ 1. Find the parameters of the encoding vector W using SMT solver. They try to maximize the distances between hw. && hw is monotonic.
+
+
+Theoretical Analysis
+---------------------
+- ASSUMPTIONS:
+  - S is a discrete time Gaussian process
+  - S is an independent process.
+  - Non-negative differential entropy (assume a high variance)
+
+- Prove some theorems
+
+Quesions:
+- differntial entropy [39]
+- equation 30: isn't i a free variable? answer: Delta H is for the ith feature
+
+
+Assumptions:
+---------------
+Attackers can inject benign traffic to evade detection (assume attackers inject benign TLS traffic and UDP video traffic)
+
+Here is the proposition: is there a way to inject benign traffic that explicitly targets the paper's frequency domain analysis? 
+
+
+Frequency Feature Extraction
+-----------------------------
+1. Encode each packet with a real number.
+2. Divide the packets into a number of frames (long term dependencies are hard to learn)
+3. Perform a discrete fourier transform on each frame
+4. Calculate "modulus" for frequency domain
+
+Per-packet features:
+- lengths, timestamps, protocol types.
+
+
+
+
+
+Use case:
+-----------
+- Scheme is a plug-in to middlebox (port mirroring like CiscoSPAN [13]
+
+
+Scope:
+--------
+Do not propose defenses for detected attacks
+Do not consider passive attacks like evesdroping and intercept attacks [45, 46]
+The system should be able to detect zero-day attacks.
+****EVASION ATTACKS***
+Does not extract specific application features *task agnostic detection*
+ - Looks like they poll the packet parser every so often and run the frequency analysis on the result
+
+Optimization Problem
+---------------------
+minimize "mutual interference"
+
+
+Strength: Beautiful time complexity table.
+
+
+Identified problems:
+-----------------------
+FAE cannot detect ACK throttling & oracle attack
+
+
+LEE AND I SHOULD BE INTERESTED IN SECTION 6.4
+Kitsune is also open source
+
+
+Questions:
+- How do fine-grained features prevent against noise packets.
+- Minimize mutual inference?
+- What are packet sequences defined as?
+- The transformation results of the DFT are "conjugate"
+- Do the authors just find the weights of w once or do they run the solver every time?
+
+
+Nits:
+3433: dose
+In equation 3, why did the authors not clarify the [[ notation?

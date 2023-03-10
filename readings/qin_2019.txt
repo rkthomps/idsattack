@@ -1,0 +1,5 @@
+Imperceptible, Robust, and Targeted Adversarial
+Examples for Automatic Speech Recognition
+==================================================
+
+1. A loud signal can make other signals at nearby frequencies imperceptible

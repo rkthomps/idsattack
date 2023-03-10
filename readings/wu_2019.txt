@@ -1,0 +1,25 @@
+Evading ML Botnet Detection Models via DRL
+==========================================
+GAN-based attacks [15, 16]
+- Defense against gradient-based attacks is masking gradients [17]
+
+Generating adversarial examples from the score (oracle ensures the traffic remains malicious) [18]
+- Add dropout for defence?
+
+Hu et al. [8] generate malware samples using GANs
+
+Generate adversarial examples from a substitute model trained with the same data. [19]
+
+Methods
+=========
+The authors train a DRL network ensuring that the integrity, availability, and function of the flow are preserved.
+
+preprocessing
+-------------
+flow -> 1024 bytes -> CNN autoencoder -> 32 dimensional vector (state)
+
+
+
+OpenAI gym is a toolkit for RL
+
+
