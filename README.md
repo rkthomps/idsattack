@@ -9,6 +9,8 @@ However, the important constraint in our project is that our modifications to tr
 
 ## Results
 By adding nop options to IPv4 packet headers in a way that is specifically targeted at the IDS [Whisper](https://github.com/fuchuanpu/Whisper), we see the following changes in AUC on Whisper's testing set. 
+The following results are for a version of Whisper that is trained on the attack datasets themselves. 
+See our paper for results with Whisper trained on MAWI 06.10.2022
 
 | Attack Type         | Clean Traffic AUC   | Modified Traffic AUC  |
 | ------------------- | ------------------- | --------------------- |
